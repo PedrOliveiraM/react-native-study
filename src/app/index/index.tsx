@@ -16,13 +16,8 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      {categories.map((value) => (
-        <Category
-          key={value.id}
-          name={value.name}
-          icon={value.icon}
-          isSelected
-        />
+      {categories.map(value => (
+        <Category key={value.id} name={value.name} icon={value.icon} isSelected />
       ))}
     </View>
   )
