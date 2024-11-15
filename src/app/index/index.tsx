@@ -3,8 +3,8 @@ import { Image, TouchableOpacity, View } from 'react-native'
 
 import { Category } from '@/components/category'
 import { colors } from '@/styles/colors'
+import { categories } from '@/utils/categories'
 import { styles } from './styles'
-
 export default function Index() {
   return (
     <View style={styles.container}>
@@ -16,7 +16,14 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      <Category />
+      {categories.map((value) => (
+        <Category
+          key={value.id}
+          name={value.name}
+          icon={value.icon}
+          isSelected
+        />
+      ))}
     </View>
   )
 }
