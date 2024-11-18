@@ -1,12 +1,11 @@
 import { MaterialIcons } from '@expo/vector-icons'
-import { Image, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, Modal, TouchableOpacity, View, Text } from 'react-native'
 
-import { Category } from '@/components/category'
-import { colors } from '@/styles/colors'
-import { categories } from '@/utils/categories'
-import { styles } from './styles'
 import { Categories } from '@/components/categories'
 import { Links } from '@/components/link'
+import { colors } from '@/styles/colors'
+import { styles } from './styles'
+
 export default function Index() {
   return (
     <View style={styles.container}>
@@ -19,11 +18,37 @@ export default function Index() {
       </View>
 
       <Categories />
-      <Links
-        name="Git"
-        url="https://github.com/PedrOliveiraM"
-        onDetails={() => console.log('clicou')}
+
+      <FlatList
+        data={['1', '2', '3', '4', '5']}
+        keyExtractor={item => item}
+        renderItem={() => (
+          <Links
+            name="Pedro Oliveira"
+            url="https://github.com/PedrOliveiraM"
+            onDetails={() => console.log('clicou')}
+          />
+        )}
+        style={styles.links}
+        contentContainerStyle={styles.linksContent}
+        showsVerticalScrollIndicator={false}
       />
+
+      <Modal transparent visible={true}>
+        <View style={styles.modal}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalCategory}>Curso</Text>
+              <TouchableOpacity>
+                <MaterialIcons name="close" size={20} color={colors.gray[400]} />
+              </TouchableOpacity>
+            </View>
+
+            <Text style={styles.modalLinkName}>PedrOliveiraM</Text>
+            <Text style={styles.modalUrl}>https://github.com/PedrOliveiraM</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }
