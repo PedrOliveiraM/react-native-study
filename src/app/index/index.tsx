@@ -6,6 +6,7 @@ import { colors } from '@/styles/colors'
 import { categories } from '@/utils/categories'
 import { styles } from './styles'
 import { Categories } from '@/components/categories'
+import { Links } from '@/components/link'
 export default function Index() {
   return (
     <View style={styles.container}>
@@ -18,6 +19,11 @@ export default function Index() {
       </View>
 
       <Categories />
+      <Links
+        name="Git"
+        url="https://github.com/PedrOliveiraM"
+        onDetails={() => console.log('clicou')}
+      />
     </View>
   )
 }
