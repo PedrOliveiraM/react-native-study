@@ -5,6 +5,7 @@ import { Category } from '@/components/category'
 import { colors } from '@/styles/colors'
 import { categories } from '@/utils/categories'
 import { styles } from './styles'
+import { Categories } from '@/components/categories'
 export default function Index() {
   return (
     <View style={styles.container}>
@@ -16,9 +17,7 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      {categories.map(value => (
-        <Category key={value.id} name={value.name} icon={value.icon} isSelected />
-      ))}
+      <Categories />
     </View>
   )
 }

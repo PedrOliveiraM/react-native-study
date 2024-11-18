@@ -1,3 +1,4 @@
+// Arquivos que serão uteis para outros componentes 
 import { MaterialIcons } from '@expo/vector-icons'
 type Category = {
   id: string
