@@ -1,5 +1,5 @@
 import { colors } from '@/styles/colors'
-import { Modal, StyleSheet } from 'react-native'
+import { Modal, StyleSheet ,Image} from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontWeight: "500",
-    color: colors.gray[200]
+    color: colors.gray[400]
   },
   modalLinkName: {
     fontSize: 18,
@@ -63,4 +63,13 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.gray[400]
   },
+  modalFooter: {
+    flexDirection: "row",
+    marginTop: 32,
+    width: "100%",
+    justifyContent: "space-between",
+    borderTopWidth: 1,
+    borderTopColor: colors.gray[600],
+    paddingVertical: 14
+  }
 })
