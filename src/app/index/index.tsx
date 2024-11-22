@@ -1,15 +1,17 @@
-import { MaterialIcons } from '@expo/vector-icons'
-import { FlatList, Image, Modal, TouchableOpacity, View, Text, Pressable } from 'react-native'
-
-import { Categories } from '@/components/categories'
 import { Links } from '@/components/link'
-import { colors } from '@/styles/colors'
-import { styles } from './styles'
 import { Option } from '@/components/option'
-import { Link, router } from 'expo-router'
-
+import { colors } from '@/styles/colors'
+import { MaterialIcons } from '@expo/vector-icons'
+import { router } from 'expo-router'
+import { useState } from 'react'
+import { FlatList, Image, Modal, Text, TouchableOpacity, View } from 'react-native'
+import { styles } from './styles'
+import { categories } from '@/utils/categories'
+import { Categories } from '@/components/categories'
 
 export default function Index() {
+  const [category, setCategory] = useState<string>(categories[0].name)
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -20,7 +22,7 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      <Categories />
+      <Categories selected={category} onChange={setCategory} />
 
       <FlatList
         data={['1', '2', '3', '4', '5']}
@@ -36,8 +38,6 @@ export default function Index() {
         contentContainerStyle={styles.linksContent}
         showsVerticalScrollIndicator={false}
       />
-
-
 
       <Modal transparent visible={false}>
         <View style={styles.modal}>
