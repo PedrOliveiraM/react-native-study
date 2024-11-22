@@ -1,5 +1,5 @@
 import { colors } from '@/styles/colors'
-import { Modal, StyleSheet ,Image} from 'react-native'
+import { StyleSheet} from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
