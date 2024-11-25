@@ -1,16 +1,33 @@
+import { Categories } from '@/components/categories'
 import { Links } from '@/components/link'
 import { Option } from '@/components/option'
+import { LinkStorage } from '@/storage/link-storage'
 import { colors } from '@/styles/colors'
-import { MaterialIcons } from '@expo/vector-icons'
-import { router } from 'expo-router'
-import { useState } from 'react'
-import { FlatList, Image, Modal, Text, TouchableOpacity, View } from 'react-native'
-import { styles } from './styles'
 import { categories } from '@/utils/categories'
-import { Categories } from '@/components/categories'
+import { MaterialIcons } from '@expo/vector-icons'
+import { router, useFocusEffect } from 'expo-router'
+import { useEffect, useState, useCallback } from 'react'
+import { Alert, FlatList, Image, Modal, Text, TouchableOpacity, View } from 'react-native'
+import { styles } from './styles'
 
 export default function Index() {
   const [category, setCategory] = useState<string>(categories[0].name)
+  const [dataLinks, setDataLinks] = useState<LinkStorage[] | []>([])
+
+  async function getLinks() {
+    try {
+      const response = await LinkStorage.get()
+      setDataLinks(response)
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível listar os links")
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      getLinks()
+    }, [])
+  )
 
   return (
     <View style={styles.container}>
@@ -25,12 +42,12 @@ export default function Index() {
       <Categories selected={category} onChange={setCategory} />
 
       <FlatList
-        data={['1', '2', '3', '4', '5']}
-        keyExtractor={item => item}
-        renderItem={() => (
+        data={dataLinks}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
           <Links
-            name="Pedro Oliveira"
-            url="https://github.com/PedrOliveiraM"
+            name={item.name}
+            url={item.url}
             onDetails={() => console.log('clicou')}
           />
         )}
