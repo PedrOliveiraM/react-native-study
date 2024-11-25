@@ -44,6 +44,7 @@ export default function Add() {
       console.log(error)
     }
   }
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
